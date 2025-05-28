@@ -1,0 +1,85 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:EsportPlayerManager.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" 
+        x:Class="EsportPlayerManager.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="Esport Manager Pro"
+        Width="1000" Height="650"
+        MinWidth="800" MinHeight="500"
+        WindowStartupLocation="CenterScreen"
+        Background="#FF1E1E1E">
+
+    <Window.Styles>
+        <Style Selector="Button">
+            <Setter Property="Background" Value="#FF4CAF50"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="15 8"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+        
+        <Style Selector="Button:pointerover">
+            <Setter Property="Background" Value="#FF66BB6A"/>
+        </Style>
+        
+        <Style Selector="TextBlock">
+            <Setter Property="Foreground" Value="#FFE0E0E0"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        
+        <Style Selector="TextBox">
+            <Setter Property="Background" Value="#FF333333"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="CornerRadius" Value="4"/>
+            <Setter Property="Padding" Value="8"/>
+        </Style>
+        
+        <Style Selector="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        
+        <Style Selector="ListBoxItem">
+            <Setter Property="Background" Value="#FF333333"/>
+            <Setter Property="Margin" Value="0 0 0 5"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="CornerRadius" Value="8"/>
+        </Style>
+    </Window.Styles>
+
+    <Grid RowDefinitions="Auto, *">
+        <!-- Header with navigation -->
+        <Border Grid.Row="0" Background="#FF2E2E2E" CornerRadius="0 0 10 10" Padding="20 10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Spacing="20">
+                <Button Content="PLAYERS" 
+                        Command="{Binding ShowPlayerCommand}"
+                        Width="150"
+                        FontWeight="Bold"/>
+                
+                <Button Content="TOURNAMENTS" 
+                        Command="{Binding ShowTournamentsCommand}"
+                        Width="150"
+                        FontWeight="Bold"/>
+                
+                <Button Content="TRAINING" 
+                        Width="150"
+                        FontWeight="Bold"/>
+            </StackPanel>
+        </Border>
+
+       
+        <ContentControl Grid.Row="1" Content="{Binding CurrentView}" Margin="20 10"/>
+        
+      
+        <Border Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                Margin="20" CornerRadius="10" Background="#22000000">
+            <Image Source="/Assets/jechanka-mamm0n.gif" Width="100" Height="100"/>
+        </Border>
+    </Grid>
+</Window>

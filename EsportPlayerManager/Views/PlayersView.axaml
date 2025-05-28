@@ -1,0 +1,95 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:EsportPlayerManager.ViewModels"
+             x:Class="EsportPlayerManager.Views.PlayersView"
+             x:DataType="vm:PlayersViewModel">
+
+    <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,*" Margin="10">
+        <!-- Add Player Form -->
+        <Border Grid.Column="0" Grid.RowSpan="2" Margin="0 0 10 0" 
+                Background="#FF2E2E2E" CornerRadius="10" Padding="20">
+            <StackPanel Spacing="15">
+                <TextBlock Text="ADD NEW PLAYER" FontSize="18" FontWeight="Bold"
+                           Foreground="#FF4CAF50" Margin="0 0 0 10"/>
+                
+                <StackPanel Spacing="5">
+                    <TextBlock Text="Nickname" FontSize="14" Foreground="#FFBDBDBD"/>
+                    <TextBox Text="{Binding NickName}" Height="40"/>
+                </StackPanel>
+                
+                <StackPanel Spacing="5">
+                    <TextBlock Text="Game" FontSize="14" Foreground="#FFBDBDBD"/>
+                    <TextBox Text="{Binding Game}" Height="40"/>
+                </StackPanel>
+                
+                <Grid ColumnDefinitions="*,*,*" RowDefinitions="Auto,Auto,Auto" Margin="0 10 0 0">
+                    <StackPanel Grid.Column="0" Spacing="5">
+                        <TextBlock Text="Skill Level" FontSize="14" Foreground="#FFBDBDBD"/>
+                        <TextBox Text="{Binding SkillLevel}" Height="40"/>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="1" Spacing="5" Margin="10 0">
+                        <TextBlock Text="Stress Level" FontSize="14" Foreground="#FFBDBDBD"/>
+                        <TextBox Text="{Binding StressLevel}" Height="40"/>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Column="2" Spacing="5">
+                        <TextBlock Text="Fatigue Level" FontSize="14" Foreground="#FFBDBDBD"/>
+                        <TextBox Text="{Binding FatigueLevel}" Height="40"/>
+                    </StackPanel>
+                </Grid>
+                
+                <Button Content="ADD PLAYER" Command="{Binding AddPlayerCommand}"
+                        HorizontalAlignment="Stretch" Margin="0 20 0 0"
+                        Background="#FF4CAF50" Height="45"/>
+            </StackPanel>
+        </Border>
+
+        <!-- Players List -->
+        <Border Grid.Column="1" Grid.Row="1" Background="#FF2E2E2E" CornerRadius="10" Padding="15">
+            <StackPanel>
+                <TextBlock Text="PLAYERS LIST" FontSize="18" FontWeight="Bold"
+                           Foreground="#FF4CAF50" Margin="0 0 0 10"/>
+                
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl ItemsSource="{Binding Players}" Margin="0 10 0 0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="#FF333333" CornerRadius="8" Margin="0 0 0 10" Padding="15">
+                                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto,Auto">
+                                        <TextBlock Grid.Column="0" Grid.Row="0" Text="{Binding nickname}" 
+                                                   FontSize="16" FontWeight="Bold" Foreground="#FF4CAF50"/>
+                                        
+                                        <StackPanel Grid.Column="0" Grid.Row="1" Orientation="Horizontal" Spacing="5">
+                                            <TextBlock Text="Game:" FontWeight="Bold"/>
+                                            <TextBlock Text="{Binding game}"/>
+                                        </StackPanel>
+                                        
+                                        <ProgressBar Grid.Column="0" Grid.Row="2" Margin="0 5" Height="8"
+                                                     Value="{Binding skilllvl}" Maximum="100"
+                                                     Background="#FF2E2E2E" Foreground="#FF4CAF50"/>
+                                        
+                                        <StackPanel Grid.Column="0" Grid.Row="3" Orientation="Horizontal" Spacing="15">
+                                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <TextBlock Text="Stress:" FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding stresslvl}"/>
+                                            </StackPanel>
+                                            
+                                            <StackPanel Orientation="Horizontal" Spacing="5">
+                                                <TextBlock Text="Fatigue:" FontWeight="Bold"/>
+                                                <TextBlock Text="{Binding fatiguelvl}"/>
+                                            </StackPanel>
+                                        </StackPanel>
+                                        
+                                        <Button Grid.Column="1" Grid.RowSpan="4" Content="..." Width="40"
+                                                VerticalAlignment="Center" Background="#FF2E2E2E"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+        </Border>
+    </Grid>
+</UserControl>
